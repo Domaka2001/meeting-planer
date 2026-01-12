@@ -1,0 +1,20 @@
+---
+title: "Przeglądanie wyników"
+description: "Jak aplikacja wizualizuje wyniki głosowania i wskazuje najlepszą opcję."
+---
+
+Strona wyników, dostępna pod adresem `/meeting/<uuid:meeting_id>/results/`, prezentuje zbiorcze wyniki głosowania wszystkich uczestników.
+
+## Prezentacja wyników
+
+Strona jest podzielona na kilka sekcji:
+
+- **Najlepsza opcja**: System automatycznie oblicza i podświetla termin, który otrzymał najwięcej głosów "Tak".
+- **Tabela wyników**: Szczegółowa tabela pokazująca głosy każdego uczestnika na każdą z proponowanych opcji (terminów i lokalizacji). Używane są ikony do wizualizacji odpowiedzi (Tak, Może, Nie).
+- **Podsumowanie głosów**: Przy każdej opcji wyświetlana jest liczba głosów każdego typu.
+
+## Logika backendowa
+- **URL**: ` /meeting/<uuid:meeting_id>/results/`
+- **Widok Django**: `meetings.views.meeting_results`
+- **Metoda HTTP**: `GET`
+- **Kluczowa logika**: Widok agreguje głosy ze wszystkich uczestników dla danego spotkania i oblicza, która opcja jest najlepsza, a następnie przekazuje te dane do szablonu w celu ich wyświetlenia.

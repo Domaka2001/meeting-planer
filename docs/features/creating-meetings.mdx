@@ -1,0 +1,30 @@
+---
+title: "Tworzenie nowego spotkania"
+description: "Jak utworzyć nowe spotkanie i skonfigurować jego opcje."
+---
+
+Strona `/create` pozwala na utworzenie nowego spotkania w systemie.
+
+## Pola formularza
+
+Formularz tworzenia spotkania zawiera następujące pola:
+
+- **Nazwa spotkania** (wymagane): Główna nazwa, która będzie identyfikować spotkanie.
+- **Opis** (opcjonalne): Dodatkowy opis, który może zawierać agendę lub inne szczegóły.
+- **Propozycje terminów**: Użytkownik może dodać jedną lub więcej propozycji dat i godzin spotkania. Pola są dodawane dynamicznie.
+- **Propozycje lokalizacji**: Użytkownik może dodać jedną lub więcej propozycji lokalizacji. Pola są dodawane dynamicznie.
+
+## Proces
+1.  Użytkownik wypełnia co najmniej nazwę spotkania.
+2.  Dodaje preferowane terminy i lokalizacje.
+3.  Po wysłaniu formularza metodą `POST`, aplikacja waliduje dane.
+4.  Jeśli nazwa jest pusta, wyświetlany jest błąd.
+5.  Jeśli wszystko jest w porządku, tworzony jest nowy obiekt `Meeting` wraz z powiązanymi obiektami `TimeSlot` i `Location`.
+6.  Na koniec użytkownik jest przekierowywany na stronę sukcesu, która wyświetla unikalny link do głosowania.
+
+## Logika backendowa
+- **URL**: ` /create/`
+- **Widok Django**: `meetings.views.create_meeting`
+- **Metody HTTP**:
+    - `GET`: Wyświetla pusty formularz tworzenia spotkania.
+    - `POST`: Przetwarza dane z formularza w celu utworzenia spotkania.

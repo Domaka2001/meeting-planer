@@ -1,0 +1,27 @@
+---
+title: "Głosowanie na termin spotkania"
+description: "Jak uczestnicy mogą głosować na preferowane terminy i lokalizacje."
+---
+
+Każde utworzone spotkanie ma unikalną stronę do głosowania, dostępną pod adresem `/meeting/<uuid:meeting_id>/`.
+
+## Proces głosowania
+
+Na stronie głosowania uczestnik widzi wszystkie zaproponowane terminy i lokalizacje.
+
+1.  Uczestnik podaje swoje imię. Jest to wymagane do oddania głosu.
+2.  Dla każdej propozycji (zarówno terminu, jak i lokalizacji) uczestnik może zaznaczyć jedną z trzech opcji:
+    - **Tak** (zielony)
+    - **Może** (żółty)
+    - **Nie** (czerwony)
+3.  Po wysłaniu formularza, system zapisuje głosy w bazie danych, tworząc lub aktualizując obiekt `Participant` oraz powiązane z nim obiekty `Vote`.
+4.  Użytkownik jest automatycznie przekierowywany na stronę z wynikami.
+
+## Logika backendowa
+- **URL**: ` /meeting/<uuid:meeting_id>/` (dla wyświetlenia formularza)
+- **Widok Django**: `meetings.views.meeting_vote` (GET)
+- **URL**: ` /meeting/<uuid:meeting_id>/vote/` (dla przetworzenia głosu)
+- **Widok Django**: `meetings.views.submit_vote` (POST)
+- **Metody HTTP**:
+    - `GET`: Wyświetla stronę do głosowania z listą opcji.
+    - `POST`: Przetwarza głosy oddane przez uczestnika.

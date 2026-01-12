@@ -1,0 +1,22 @@
+---
+title: "Panel główny"
+description: "Przegląd wszystkich utworzonych spotkań."
+---
+
+Panel główny, dostępny pod adresem `/dashboard/`, jest centralnym miejscem, gdzie można zobaczyć listę wszystkich spotkań utworzonych w aplikacji.
+
+## Funkcjonalność
+
+- **Lista spotkań**: Wyświetla wszystkie spotkania, posortowane od najnowszego do najstarszego.
+- **Szczegóły spotkania**: Dla każdego spotkania na liście widoczna jest jego nazwa, opis oraz data utworzenia.
+- **Nawigacja**: Z poziomu panelu można przejść do strony głosowania lub strony wyników dla każdego spotkania.
+- **Usuwanie spotkań**: Każde spotkanie można usunąć za pomocą przycisku "Usuń".
+
+## Logika backendowa
+- **URL**: ` /dashboard/`
+- **Widok Django**: `meetings.views.dashboard` (GET)
+- **URL do usuwania**: `/meeting/<uuid:meeting_id>/delete/`
+- **Widok Django do usuwania**: `meetings.views.delete_meeting` (POST)
+- **Metody HTTP**:
+    - `GET` na `/dashboard/`: Wyświetla listę spotkań.
+    - `POST` na `/meeting/<id>/delete/`: Usuwa wskazane spotkanie.
